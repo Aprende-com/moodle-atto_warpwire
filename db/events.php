@@ -14,22 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
- * Atto text editor integration version file.
- *
- * @package    atto_warpwire
- * @copyright  2016 Warpwire, Inc.  <warpwire.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
-defined('MOODLE_INTERNAL') || die();
-
-$plugin->component = 'atto_warpwire';
-$plugin->version   = 2022081800;
-$plugin->release   = '4.1.0';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->requires  = 2019111800;
-
-$plugin->dependencies = array(
-    'local_warpwire' => 2022081800
-);
+$observers = [
+    [
+        'eventname' => '\core\event\config_log_created',
+        'callback' => '\atto_warpwire\event_handler::on_setting_changed'
+    ]
+];
